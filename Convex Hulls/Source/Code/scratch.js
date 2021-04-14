@@ -321,34 +321,6 @@ window.onload = function init() {
         document.getElementById("torsoSliderX"), // 3
         document.getElementById("torsoSliderY"), // 4
         document.getElementById("torsoSliderZ"), // 5
-        document.getElementById("headSliderX"), // 6
-        document.getElementById("headSliderY"), // 7
-        document.getElementById("leftUpperArmSlider"), // 8
-        document.getElementById("leftMiddleArmSlider"), // 9
-        document.getElementById("leftLowerArmSlider"), // 10
-        document.getElementById("rightUpperArmSlider"), // 11
-        document.getElementById("rightMiddleArmSlider"), // 12
-        document.getElementById("rightLowerArmSlider"), // 13
-        document.getElementById("leftUpperMiddleArmSlider"), // 14
-        document.getElementById("leftMiddleMiddleArmSlider"), // 15
-        document.getElementById("leftLowerMiddleArmSlider"), // 16
-        document.getElementById("rightUpperMiddleArmSlider"), // 17
-        document.getElementById("rightMiddleMiddleArmSlider"), // 18
-        document.getElementById("rightLowerMiddleArmSlider"), // 19
-        document.getElementById("leftUpperLegSlider"), // 20
-        document.getElementById("leftLowerLegSlider"), // 21
-        document.getElementById("rightUpperLegSlider"), // 22
-        document.getElementById("rightLowerLegSlider"), // 23
-        document.getElementById("leftWingSlider"), // 24
-        document.getElementById("rightWingSlider"), // 25
-        // Additional
-        document.getElementById("leftUpperArm2Slider"), // 26
-        document.getElementById("rightUpperArm2Slider"), // 27
-        document.getElementById("leftUpperMiddleArm2Slider"), // 28
-        document.getElementById("rightUpperMiddleArm2Slider"), // 29
-        document.getElementById("leftUpperLeg2Slider"), // 30
-        document.getElementById("rightUpperLeg2Slider"), // 31
-
     ]
 
     let sliderToElem = [
@@ -358,32 +330,6 @@ window.onload = function init() {
         torsoXId, // 3
         torsoYId, // 4
         torsoZId, // 5
-        head1Id, // 6
-        head2Id, // 7
-        leftUpperArmId, // 8
-        leftMiddleArmId, // 9
-        leftLowerArmId, // 10
-        rightUpperArmId, // 11
-        rightMiddleArmId, // 12
-        rightLowerArmId, // 13
-        leftUpperMiddleArmId, // 14
-        leftMiddleMiddleArmId, // 15
-        leftLowerMiddleArmId, // 16
-        rightUpperMiddleArmId, // 17
-        rightMiddleMiddleArmId, // 18
-        rightLowerMiddleArmId, // 19
-        leftUpperLegId, // 20
-        leftLowerLegId, // 21
-        rightUpperLegId, // 22
-        rightLowerLegId, // 23
-        leftWingId, // 24
-        rightWingId, // 25
-        leftUpperArm2Id, // 26
-        rightUpperArm2Id, // 27
-        leftUpperMiddleArm2Id, // 28
-        rightUpperMiddleArm2Id, // 29
-        leftUpperLeg2Id, // 30
-        rightUpperLeg2Id, // 31
     ];
 
     function setSlider(sliderNum) {
@@ -433,26 +379,6 @@ window.onload = function init() {
             };
         })(this.files[0]);
         r.readAsText(this.files[0]);
-    }
-
-    function createKeyframeDiv(frameId) {
-        let keyframeDiv = document.createElement("div");
-        keyframeDiv.className = "keyframeDiv";
-        let textDiv = document.createElement("div");
-        let keyframeText = document.createElement("p");
-        keyframeText.innerText = "Keyframe " + frameId;
-        let removeKeyframeBtn = document.createElement("button");
-        removeKeyframeBtn.innerText = "Remove";
-
-        removeKeyframeBtn.onclick = () => {
-            anim.splice(frameId,1);
-            animToHTML();
-        };
-
-        textDiv.appendChild(keyframeText);
-        keyframeDiv.appendChild(textDiv);
-        keyframeDiv.appendChild(removeKeyframeBtn);
-        pageInfo.keyframe.appendChild(keyframeDiv);
     }
 
     function animToHTML() {
@@ -518,28 +444,11 @@ var render = function() {
 	let anim_offset = 0;
 	let progress = ( elapsed / 1000 ) % anim.length;
 
-	if (playing && anim.length > 0) {
-		anim_index = Math.floor(progress);
-		anim_offset = progress - Math.floor(progress);
-		for( let i = 0; i < theta.length; i++ ) {
-            theta[i] = anim[anim_index][i] * (1-anim_offset) + anim[ (anim_index + 1) % anim.length][i] * (anim_offset);
-
-            animateSlider(i, theta[i]);
-		}
-    }
 	for(i=0; i < numNodes; i++) initNodes(i);
 
     traverse(torsoId);
     
     drawGround();
-}
-
-function drawGround() {
-	instanceMatrix = mult(modelViewMatrix, translate(0.0, -5.0, 0.0) );
-    instanceMatrix = mult(instanceMatrix, scale4( 20, 20, 20));
-    gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(instanceMatrix));
-    
-    gl.drawArrays(gl.TRIANGLE_FAN, 111, 4);
 }
 
 //DOWNLOAD
@@ -551,7 +460,7 @@ function download(content, fileName, contentType) {
     a.click();
 }
 
-function torsoComplete( arrayx, heightI, widthI ) {
+function torsoComplete( arrayx, heightI, widthI  ) {
     let resultPoinst = []
     for(let i = 10; i < arrayx.length; i += 4) {
         let upperPoint1 = arrayx[i + 2];
@@ -574,37 +483,70 @@ function animateSlider(thetaIndex, newValue) {
 
 var thetaToSlider = [
     null, // torsoId 0
-    null, // 1
-    8, // 2
-    10, // 3 leftLowerArmId
-    11, // 4 RightUpperArm
-    13, // rightLowerArmId = 5
-    20, // leftUpperLegId = 6;
-    21, // leftLowerLegId = 7;
-    22, // rightUpperLegId = 8;
-    23, // rightLowerLegId = 9;
-    9, // leftMiddleArmId = 10;
-    12, // var rightMiddleArmId = 11;
-    14, // var leftUpperMiddleArmId = 12;
-    15, // var leftMiddleMiddleArmId = 13;
-    16, // var leftLowerMiddleArmId = 14;
-    17, // var rightUpperMiddleArmId = 15;
-    18, // var rightMiddleMiddleArmId = 16;
-    19, // var rightLowerMiddleArmId = 17;
-    24, // var leftWingId = 18;
-    25, // var rightWingId = 19;
-    0, // var translateXId = 20;
-    1, // var translateYId = 21;
-    2, // var translateZId = 22;
-    3, // var torsoXId = 23;
-    4, // var torsoYId = 24;
-    5, // var torsoZId = 25;
-    6,// var head1Id = 26;
-    7, // var head2Id = 27;
-    26, // var leftUpperArm2Id = 28;
-    27, // var rightUpperArm2Id = 29;
-    30, // var leftUpperLeg2Id = 30;
-    31, // var rightUpperLeg2Id = 31;
-    28,// var leftUpperMiddleArm2Id = 32;
-    29, // var rightUpperMiddleArm2Id = 33;
 ]
+
+//--------------------------------------------
+
+
+function createNode(transform, render, sibling, child){
+    var node = {
+        transform: transform,
+        render: render,
+        sibling: sibling,
+        child: child,
+    }
+    return node;
+}
+
+function quad(a, b, c, d) {
+     pointsArray.push(vertices[a]); 
+     pointsArray.push(vertices[b]); 
+     pointsArray.push(vertices[c]);     
+     pointsArray.push(vertices[d]);    
+}
+
+// Creates
+function cube()
+{
+    quad( 1, 0, 3, 2 );
+    quad( 2, 3, 7, 6 );
+    quad( 3, 0, 4, 7 );
+    quad( 6, 5, 1, 2 );
+    quad( 4, 5, 6, 7 );
+    quad( 5, 4, 0, 1 );
+}
+
+function scale4(a, b, c) {
+   var result = mat4();
+   result[0][0] = a;
+   result[1][1] = b;
+   result[2][2] = c;
+   return result;
+}
+
+// Create Hierarchy
+function initNodes(Id) {
+	var m = mat4();      
+	m = translate(theta[translateXId], theta[translateYId], theta[translateZId]);
+	m = mult(m, rotate(theta[torsoXId], 1, 0, 0 ));
+	m = mult(m, rotate(theta[torsoYId], 0, 1, 0));
+	m = mult(m, rotate(theta[torsoZId], 0, 0, 1));
+	figure[torsoId] = createNode( m, torso, null, headId );
+}
+
+function torso() {
+
+    instanceMatrix = mult(modelViewMatrix, translate(0.0, 0.0, 0.0) );
+    instanceMatrix = mult(instanceMatrix, scale4( torsoWidth, torsoHeight / 5, torsoWidth * 3/4));
+    gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(instanceMatrix));
+
+    gl.drawArrays(gl.TRIANGLE_FAN, 24, 10);
+    for(let cnt = 34; cnt < 95;cnt += 4) {
+        gl.drawArrays(gl.TRIANGLE_FAN, cnt, 4);
+    }
+    instanceMatrix = mult(modelViewMatrix, translate(0.0, 5.5, 0.0) );
+    instanceMatrix = mult(instanceMatrix, scale4( 10, 2, 10 * 3/4));
+    gl.uniformMatrix4fv(modelViewMatrixLoc, false, flatten(instanceMatrix));
+    gl.drawArrays(gl.TRIANGLE_FAN, 119, 10);
+
+}
