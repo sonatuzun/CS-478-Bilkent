@@ -551,7 +551,7 @@ function download(content, fileName, contentType) {
     a.click();
 }
 
-function torsoComplete( arrayx, heightI, widthI) {
+function torsoComplete( arrayx, heightI, widthI ) {
     let resultPoinst = []
     for(let i = 10; i < arrayx.length; i += 4) {
         let upperPoint1 = arrayx[i + 2];
