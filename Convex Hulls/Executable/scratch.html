@@ -43,7 +43,6 @@ void main()
 <script type="text/javascript" src="../Source/Common/webgl-utils.js"></script>
 <script type="text/javascript" src="../Source/Common/InitShaders.js"></script>
 <script type="text/javascript" src="../Source/Common/MV.js"></script>
-<script type="text/javascript" src="../Source/Code/limbs.js"></script>
 <script type="text/javascript" src="../Source/Code/scratch.js"></script>
 
 <body>
@@ -52,9 +51,9 @@ void main()
             <div class = "mdl-tabs mdl-js-tabs">
                 <div class = "mdl-tabs__tab-bar">
                     <a href = "#tab1-panel" class = "mdl-tabs__tab is-active">Other</a>
-                    <a href = "#tab2-panel" class = "mdl-tabs__tab">Arms - I</a>
-                    <a href = "#tab2b-panel" class = "mdl-tabs__tab">Arms - II</a>
-                    <a href = "#tab3-panel" class = "mdl-tabs__tab">Legs</a>
+                    <!-- <a href = "#tab2-panel" class = "mdl-tabs__tab">Arms - I</a> -->
+                    <!-- <a href = "#tab2b-panel" class = "mdl-tabs__tab">Arms - II</a> -->
+                    <!-- <a href = "#tab3-panel" class = "mdl-tabs__tab">Legs</a> -->
                 </div>
                 
                 <div class = "mdl-tabs__panel is-active" id = "tab1-panel">
@@ -82,125 +81,9 @@ void main()
                         Torso Angle Z Axis -180 <input id="slide" type="range"
                         min="-180" max="180" step="10" value="0"/> 180
                     </div><br/>
-                    <div id="headSliderX">
-                        Head X Axis -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="headSliderY">
-                        Head Y Axis -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
                     
                 </div>
                 
-                <div class = "mdl-tabs__panel" id = "tab2-panel">
-                    <!-- Upper Arm -->
-                    <div id="leftUpperArmSlider">
-                        Right Upper Arm X Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftUpperArm2Slider">
-                        Right Upper Arm Y Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftMiddleArmSlider">
-                        Right Middle Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftLowerArmSlider">
-                        Right Lower Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightUpperArmSlider">
-                        Left Upper Arm X Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightUpperArm2Slider">
-                        Left Upper Arm Y Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightMiddleArmSlider">
-                        Left Middle Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightLowerArmSlider">
-                        Left Lower Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                </div>
-
-                <!-- Middle Arm -->
-                <div class = "mdl-tabs__panel" id = "tab2b-panel">
-                    <div id="leftUpperMiddleArmSlider">
-                        Right Upper Middle Arm X Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftUpperMiddleArm2Slider">
-                        Right Upper Middle Arm Y Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftMiddleMiddleArmSlider">
-                        Right Middle Middle Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftLowerMiddleArmSlider">
-                        Right Lower Middle Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightUpperMiddleArmSlider">
-                        Left Upper Middle Arm X Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightUpperMiddleArm2Slider">
-                        Left Upper Middle Arm Y Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightMiddleMiddleArmSlider">
-                        Left Middle Middle Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightLowerMiddleArmSlider">
-                        Left Lower Middle Arm Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                </div>
-                
-                <!-- Leg & Wing -->
-                <div class = "mdl-tabs__panel" id = "tab3-panel">
-                    <div id="leftUpperLegSlider">
-                        Right Upper Leg X Angle 0 <input id="slide" type="range"
-                        min="0" max="360" step="10" value="180"/> 360
-                    </div><br/>
-                    <div id="leftUpperLeg2Slider">
-                        Right Upper Leg Y Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftLowerLegSlider">
-                        Right Lower Leg Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightUpperLegSlider">
-                        Left Upper Leg X Angle 0 <input id="slide" type="range"
-                        min="0" max="360" step="10" value="0"/> 360
-                    </div><br/>
-                    <div id="rightUpperLeg2Slider">
-                        Left Upper Leg Y Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightLowerLegSlider">
-                        Left Lower Leg Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="leftWingSlider">
-                        Right Wing Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    <div id="rightWingSlider">
-                        Left Wing Angle -180 <input id="slide" type="range"
-                        min="-180" max="180" step="10" value="0"/> 180
-                    </div><br/>
-                    
-                </div>
             </div>
             
             
