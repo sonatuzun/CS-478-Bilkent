@@ -10,10 +10,13 @@ plt.ion()
 plt.figure('spltv',figsize=(20,10))
 custom = plt.subplot(121,projection='3d')
 
+
+#print( x_points := 15 + np.random.random(1) )
+
 point1 = np.array([1, 5, 0])
 point2 = np.array([-2, 3, 0])
 point3 = np.array([0, 0, 6])
-point4 = np.array([0, 0, 0])
+point4 = np.array([4, 0, 0])
 
 for p in [point1, point2, point3, point4]:
     custom.scatter(p[0],p[1],p[2])
